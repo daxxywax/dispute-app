@@ -8,7 +8,8 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
 
     const { shopName, shopAddress, adjusterName, insurerName, claimNumber,
-      vehicleYear, vehicleMake, vehicleModel, repairsPerformed, deniedItems, denialReason } = body;
+      vehicleYear, vehicleMake, vehicleModel, repairsPerformed, deniedItems,
+      denialReason, dateOfLoss, laborHours, disputedAmount } = body;
 
     const systemPrompt = `You are an expert automotive insurance dispute specialist with 20 years of experience helping independent auto body shops recover fair compensation from insurance companies. You write professional, assertive, and legally sound dispute letters.
 
@@ -32,7 +33,10 @@ Shop Address: ${shopAddress}
 Adjuster Name: ${adjusterName}
 Insurance Company: ${insurerName}
 Claim Number: ${claimNumber}
+Date of Loss: ${dateOfLoss}
 Vehicle: ${vehicleYear} ${vehicleMake} ${vehicleModel}
+Total Labor Hours: ${laborHours}
+Total Disputed Amount: $${disputedAmount}
 
 Repairs Performed:
 ${repairsPerformed}
@@ -43,7 +47,7 @@ ${deniedItems}
 Insurer's Stated Denial Reason:
 ${denialReason}
 
-Write a complete, professional dispute letter ready to send.`;
+Write a complete, professional dispute letter ready to send with no placeholders — use the exact details provided above.`;
 
     const message = await client.messages.create({
       model: 'claude-sonnet-4-6',
