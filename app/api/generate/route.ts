@@ -174,6 +174,10 @@ export default function Home() {
           style={{ ...inputStyle, resize: 'vertical' }} />
       </div>
 
+      <p style={{ fontSize: 12, color: '#555', marginBottom: 16, lineHeight: 1.6 }}>
+        This tool generates draft dispute letters for review purposes. Always verify compliance with your provincial or state insurance regulations before sending. Not legal advice.
+      </p>
+
       <button onClick={handleSubmit} disabled={loading}
         style={{
           background: loading ? '#333' : '#fff',
